@@ -15,5 +15,8 @@
     "@fontsource/jost": "^5.0.17",
     "astro": "^4.5.2",
     "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "vite-plugin-pwa": "^0.19.2"
   }
 }
