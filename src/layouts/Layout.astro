@@ -1,0 +1,42 @@
+---
+import { ViewTransitions } from "astro:transitions"
+
+import ButtonUp from "@/components/ButtonUp.astro"
+import KonamiCode from "@/components/KonamiCode.astro"
+import LightsBackground from "@/components/LightsBackground.astro"
+import NoiseBackground from "@/components/NoiseBackground.astro"
+import SEO from "@/components/SEO.astro"
+import Header from "@/sections/Header.astro"
+import Footer from "@/sections/Footer.astro"
+import Global from "@/styles/Global.astro"
+
+interface Props {
+	description: string
+	title: string
+	preloadImgLCP?: string
+}
+
+const { title, description, preloadImgLCP } = Astro.props
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<SEO title={ title } description={ description } preloadImgLCP={ preloadImgLCP! } />
+		<ViewTransitions />
+	</head>
+
+	<body>
+		<NoiseBackground/>
+		<!-- <LightsBackground/> -->
+		<main>
+			<Header/>
+			<slot/>
+			<!-- <Footer/> -->
+		</main>
+		<KonamiCode/>
+		<!-- <ButtonUp/> -->
+	</body>
+</html>
+
+<Global/>

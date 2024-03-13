@@ -1,0 +1,124 @@
+---
+import Logo from "@/components/Logo.astro";
+
+---
+
+<header>
+    <nav>
+        <ul>
+            <div class="nav__left">
+                <li><a href="/el-evento">El Evento</a></li>
+                <li><a href="/combates">Combates</a></li>
+            </div>
+            <li class="logo"><a href="/"><Logo/></a></li>
+            <div class="nav__right">
+                <li><a href="/deded">Pronósticos</a></li>
+                <li><a href="/deded">Entradas</a></li>
+            </div>
+        </ul>
+        <div class="line main-row">
+            <span class="line__left"></span>
+            <span class="line__space"></span>
+            <span class="line__right"></span>
+        </div>
+    </nav>
+</header>
+
+<style>
+
+    header{
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 99999;
+    }
+
+    nav ul {
+        align-items: flex-start;
+        display: flex;
+        font-size: 1.25em;
+        justify-content: center;
+        text-transform: uppercase;
+    }
+
+    .nav__left,
+    .nav__right{
+        display: flex;
+        flex: 1;
+    }
+    
+    .nav__left{
+        justify-content: flex-end;
+    }
+
+    nav li{
+        position: relative;
+    }
+
+    nav li a{
+        display: block;
+        padding: 36px 48px;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        z-index: 2;
+    }
+
+    nav li:not(.logo)::before{
+        background: linear-gradient(0deg, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition: all 0.3s ease-in-out;
+        width: 100%;
+        z-index: 1;
+    }
+
+    nav li:not(.logo):hover::before{
+        opacity: 1;
+    }
+
+    nav li:not(.logo):hover a{
+        color: #fff;
+    }
+
+    nav li.logo{
+        flex: 0 0 148px;
+        position: relative;
+        z-index: 2;
+    }
+
+    nav li.logo a{
+        padding: 36px 30px 0;
+    }
+
+    .line{
+        display: flex;
+        height: 2px;
+        margin-top: -72px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .line__left,
+    .line__right{
+        flex: 1;
+        height: 2px;
+    }
+
+    .line__left{
+        background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    }
+
+    .line__right{
+        background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .line__space{
+        flex: 0 0 136px;
+    }
+
+</style>

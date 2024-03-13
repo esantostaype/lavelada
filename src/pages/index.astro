@@ -1,16 +1,25 @@
 ---
+import Layout from "@/layouts/Layout.astro"
+import Countdown from "@/sections/Countdown.astro"
 
+import Hero from "@/sections/Hero.astro"
+import Info from "@/sections/Info.astro"
+import PresentationVideo from "@/sections/PresentationVideo.astro"
+import PrincipalDate from "@/sections/PrincipalDate.astro"
+
+import Sponsors from "@/sections/Sponsors.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+	description="Web Oficial de La Velada del Año IV, evento de boxeo entre streamers y creadores de contenido, organizado por Ibai Llanos"
+	title="La Velada del Año 4 - Evento de Boxeo de Ibai Llanos"
+>
+	<Hero />
+	<PrincipalDate />
+	<!-- 
+	
+	<Info />
+	<PresentationVideo />
+	<Sponsors />
+	<Countdown /> -->
+</Layout>

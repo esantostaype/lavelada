@@ -1,0 +1,43 @@
+---
+import GithubIcon from "@/icons/github.astro"
+import InstagramIcon from "@/icons/instagram.astro"
+import XIcon from "@/icons/x.astro"
+---
+
+<footer>
+    <div class="copyright">&copy; { new Date().getFullYear() } La Velada del Año | Todos los derechos reservados.</div>
+	<nav class="social-icons">
+		<ul>
+			<li>
+				<a
+					target="_blank"
+					rel="noopener"
+					aria-label="Instagram de la velada, se abrirá en una nueva pestaña"
+					href="https://www.instagram.com/infolavelada"
+                >
+					<InstagramIcon />
+				</a>
+			</li>
+			<li>
+				<a
+					target="_blank"
+					rel="noopener"
+					aria-label="X de la velada, se abrirá en una nueva pestaña"
+					href="https://x.com/infoLaVelada"
+                >
+					<XIcon />
+				</a>
+			</li>
+			<li>
+				<a
+					target="_blank"
+					rel="noopener"
+					aria-label="Github de la velada, se abrirá en una nueva pestaña"
+					href="https://github.com/midudev/la-velada-web-oficial"
+                >
+					<GithubIcon />
+				</a>
+			</li>
+		</ul>
+	</nav>
+</footer>
