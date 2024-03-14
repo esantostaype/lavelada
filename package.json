@@ -13,7 +13,9 @@
     "@astrojs/check": "^0.5.8",
     "@fontsource-variable/jost": "^5.0.18",
     "@fontsource/jost": "^5.0.17",
+    "@splidejs/splide": "^4.1.4",
     "astro": "^4.5.2",
+    "swiper": "^11.0.7",
     "typescript": "^5.4.2"
   },
   "devDependencies": {

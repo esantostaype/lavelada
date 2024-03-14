@@ -1,79 +1,81 @@
 <canvas id="noise" aria-label="Efecto de ruido de fondo" class="noise"></canvas>
 
 <script>
-	let wWidth: number, wHeight: number
-	const noiseData: ImageData[] = []
-	let frame: number = 0
-	let loopTimeout: number
-	let resizeThrottle: number
+	document.addEventListener( "astro:page-load", () => {
+		let wWidth: number, wHeight: number
+		const noiseData: ImageData[] = []
+		let frame: number = 0
+		let loopTimeout: number
+		let resizeThrottle: number
 
-	const canvas = document.getElementById("noise") as HTMLCanvasElement
-	const ctx = canvas.getContext("2d")
+		const canvas = document.getElementById("noise") as HTMLCanvasElement
+		const ctx = canvas.getContext("2d")
 
-	if (!ctx) {
-		throw new Error("2D context not supported or canvas not found")
-	}
-
-	const createNoise = () => {
-		const idata: ImageData = ctx.createImageData(wWidth, wHeight)
-		const buffer32: Uint32Array = new Uint32Array(idata.data.buffer)
-		let len: number = buffer32.length
-
-		while (len--) {
-			buffer32[len] = ((Math.random() * 120) | 0) << 24
+		if (!ctx) {
+			throw new Error("2D context not supported or canvas not found")
 		}
 
-		noiseData.push(idata)
-	}
+		const createNoise = () => {
+			const idata: ImageData = ctx.createImageData(wWidth, wHeight)
+			const buffer32: Uint32Array = new Uint32Array(idata.data.buffer)
+			let len: number = buffer32.length
 
-	const paintNoise = () => {
-		if (frame === 9) {
-			frame = 0
-		} else {
-			frame++
+			while (len--) {
+				buffer32[len] = ((Math.random() * 120) | 0) << 24
+			}
+
+			noiseData.push(idata)
 		}
 
-		ctx.putImageData(noiseData[frame], 0, 0)
-	}
+		const paintNoise = () => {
+			if (frame === 9) {
+				frame = 0
+			} else {
+				frame++
+			}
 
-	const loop = () => {
-		paintNoise()
-
-		loopTimeout = window.setTimeout(() => {
-			window.requestAnimationFrame(loop)
-		}, 1000 / 25) as unknown as number
-	}
-
-	const setup = () => {
-		wWidth = window.innerWidth
-		wHeight = window.innerHeight + 100
-
-		canvas.width = wWidth
-		canvas.height = wHeight
-
-		noiseData.length = 0
-
-		for (let i = 0; i < 10; i++) {
-			createNoise()
+			ctx.putImageData(noiseData[frame], 0, 0)
 		}
 
-		loop()
-	}
+		const loop = () => {
+			paintNoise()
 
-	setup()
+			loopTimeout = window.setTimeout(() => {
+				window.requestAnimationFrame(loop)
+			}, 1000 / 25) as unknown as number
+		}
 
-	window.addEventListener(
-		"resize",
-		() => {
-			window.clearTimeout(resizeThrottle)
+		const setup = () => {
+			wWidth = window.innerWidth
+			wHeight = window.innerHeight + 100
 
-			resizeThrottle = window.setTimeout(() => {
-				window.clearTimeout(loopTimeout)
-				setup()
-			}, 200) as unknown as number
-		},
-		false
-	)
+			canvas.width = wWidth
+			canvas.height = wHeight
+
+			noiseData.length = 0
+
+			for (let i = 0; i < 10; i++) {
+				createNoise()
+			}
+
+			loop()
+		}
+
+		setup()
+
+		window.addEventListener(
+			"resize",
+			() => {
+				window.clearTimeout(resizeThrottle)
+
+				resizeThrottle = window.setTimeout(() => {
+					window.clearTimeout(loopTimeout)
+					setup()
+				}, 200) as unknown as number
+			},
+			false
+		)
+	});
 </script>
 
 <style>

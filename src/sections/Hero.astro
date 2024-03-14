@@ -1,36 +1,104 @@
 ---
 import SmokeBackground from "@/components/SmokeBackground.astro"
 import Icon from "@/components/Icon.astro"
+import LVDA from "@/components/LVDA.astro"
 ---
 
 <section class="hero">
-	<SmokeBackground/>
-	<section class="slider">
-		<ul class="slider__list">
-			<li class="slide main-row">
-				<div class="names">
-					<h2 class="name left">yo soy <span class="main">plex</span></h2>
-					<span class="versus">versus</span>
-					<h2 class="name right">el <span class="main">mariana</span></h2>
-				</div>
-				<div class="boxer left">
-					<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
-				</div>
-				<div class="boxer right">
-					<img src="/images/el-mariana.webp" alt="El Mariana">
-				</div>
-			</li>
-		</ul>
-		<div class="slider__navigation">
+	<div class="hero__lvda"><LVDA/></div>	
+	<SmokeBackground />
+	<section class="slider splide">
+		<div class="splide__track">
+			<ul class="slider__list splide__list">
+				<li class="splide__slide">
+					<div class="slide__content main-row">
+						<div class="label">Primer Combate</div>
+						<div class="names">
+							<h2 class="name left">yo soy <span class="name__main">plex</span></h2>
+							<span class="versus">versus</span>
+							<h2 class="name right">el <span class="name__main">mariana</span></h2>
+						</div>
+						<div class="boxer left">
+							<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
+						</div>
+						<div class="boxer right">
+							<img src="/images/el-mariana.webp" alt="El Mariana">
+						</div>
+					</div>
+				</li>
+				<li class="splide__slide">
+					<div class="slide__content main-row">
+						<div class="label">Segundo Combate</div>
+						<div class="names">
+							<h2 class="name left"><span class="name__main">alana</span></h2>
+							<span class="versus">versus</span>
+							<h2 class="name right"><span class="name__main">nissaxter</span></h2>
+						</div>
+						<div class="boxer left">
+							<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
+						</div>
+						<div class="boxer right">
+							<img src="/images/el-mariana.webp" alt="El Mariana">
+						</div>
+					</div>
+				</li>
+				<li class="splide__slide">
+					<div class="slide__content main-row">
+						<div class="label">Tercer Combate</div>
+						<div class="names">
+							<h2 class="name left"><span class="name__main">carreraaa</span></h2>
+							<span class="versus">versus</span>
+							<h2 class="name right"><span class="name__main">shelao</span></h2>
+						</div>
+						<div class="boxer left">
+							<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
+						</div>
+						<div class="boxer right">
+							<img src="/images/el-mariana.webp" alt="El Mariana">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="splide__arrows">
+			<div class="splide__arrows__content main-row">
+				<hr>
+				<button class="splide__arrow splide__arrow--prev">
+					<Icon name="arrow-prev" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" />
+				</button>
+				<button class="splide__arrow splide__arrow--next">
+					<Icon name="arrow-next" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" />
+				</button>
+			</div>
+	  </div>
+		<!-- <div class="slider__navigation">
 			<div class="slider__navigation__content main-row">
 				<hr>
-				<button class="slider__navigation__button prev"><Icon name="arrow-prev" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" /></button>
+				<button class="slider__navigation__button prev swiper-button-prev">
+					<Icon name="arrow-prev" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" />
+				</button>
 				<div class="label">Sexto Combate</div>
-				<button class="slider__navigation__button next"><Icon name="arrow-next" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" /></button>
+				<button class="slider__navigation__button next swiper-button-next">
+					<Icon name="arrow-next" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" />
+				</button>
 			</div>
-		</div>
+		</div> -->
 	</section>
 </section>
+
+<script>
+	import '@splidejs/splide/css/core';
+	import Splide from '@splidejs/splide';
+	document.addEventListener( "astro:page-load", () => {
+		const splide = new Splide( '.splide', {
+			type   : 'fade',
+			rewind: true,
+			autoplay: true,
+			pauseOnHover: false,
+			interval: 3000
+		} ).mount();
+	})
+</script>
 
 <style>
 	.hero{
@@ -40,20 +108,33 @@ import Icon from "@/components/Icon.astro"
 		position: relative;
 	}
 
+	.hero__lvda{
+		align-items: center;
+		display: flex;
+		left: 50%;
+		justify-content: center;
+		position: absolute;
+		top: 220px;
+		transform: translateX(-50%);
+	}
+
+	.hero__lvda svg{
+		width: 100%;
+	}
+
 	.slider{
+		mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 80%);
 		position: relative;
 	}
 
-	.slider__navigation{
+	.splide__arrows{
 		bottom: 0;
-		font-size: 14px;
 		position: absolute;
-		text-transform: uppercase;
 		width: 100%;
 		z-index: 12;
 	}
 
-	.slider__navigation__content{
+	.splide__arrows__content{
 		align-items: center;
 		display: flex;
 		gap: 40px;
@@ -61,7 +142,7 @@ import Icon from "@/components/Icon.astro"
 		position: relative;
 	}
 
-	.slider__navigation hr{
+	.splide__arrows hr{
 		background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
 		border: none;
 		height: 2px;
@@ -72,12 +153,12 @@ import Icon from "@/components/Icon.astro"
 		width: 100%;
 	}
 
-	.slider__navigation__button{
+	.splide__arrows button{
 		padding: 30px 100px;
 		position: relative;
 	}
 
-	.slider__navigation__button::before{
+	.splide__arrows button::before{
         background: linear-gradient(0deg, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
 		content: '';
 		left: 0;
@@ -89,19 +170,19 @@ import Icon from "@/components/Icon.astro"
 		width: 100%;
 	}
 
-	.slider__navigation__button:hover::before{
+	.splide__arrows button:hover::before{
 		opacity: 1;
 	}
 
 	.label{
+		bottom: 36px;
 		left: 50%;
-		margin-top: -4px;
 		position: absolute;
-		top: 50%;
+		text-transform: uppercase;
 		transform: translate(-50%, -50%);
 	}
 
-	.slide{
+	.slide__content{
 		display: flex;
 		justify-content: space-between;
 		padding: 0 60px;
@@ -112,11 +193,29 @@ import Icon from "@/components/Icon.astro"
 	.boxer{
 		height: calc(100vh - 60px);
 		max-width: 720px;
-  		mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 10%, rgba(0,0,0,1) 40%);
+  		mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 40px, rgba(0,0,0,1) 240px);
+		transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
 	}
 
 	.boxer img{
 		filter: drop-shadow(0 0 30px rgba(0,0,0,0.5));
+	}
+
+	.splide__slide{
+		overflow: hidden;
+	}
+
+	.boxer.left{
+		transform: translateX(-200%);
+	}
+	
+	.boxer.right{
+		transform: translateX(200%);
+	}
+
+	.splide__slide.is-active .boxer{
+		opacity: 1;
+		transform: translateX(0);
 	}
 
 	.names{
@@ -137,21 +236,33 @@ import Icon from "@/components/Icon.astro"
 
 	.name{
 		color: var(--color-accent);
-	}
-
-	.main{
-		font-size: 2em;
-	}
-
-	.name.left{
-	}
-
-	.name.right{
-		margin: 0 0 -180px -200px;
+		opacity: 0;
+		transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.2s, opacity 0.6s ease-in-out 0.5s;
 	}
 
 	.versus{
 		display: block;
 		padding: 0 10px;
+		opacity: 0;
+		transition: opacity 0.6s ease-in-out 0.5s;
+	}
+
+	.name__main{
+		font-size: 2em;
+	}
+
+	.name.left{
+		transform: translateX(-300%);
+	}
+
+	.name.right{
+		margin: 0 0 -180px -200px;
+		transform: translateX(300%);
+	}
+
+	.splide__slide.is-active .name,
+	.splide__slide.is-active .versus{
+		opacity: 1;
+		transform: translateX(0);
 	}
 </style>
