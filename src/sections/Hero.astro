@@ -93,7 +93,7 @@ import LVDA from "@/components/LVDA.astro"
 		const splide = new Splide( '.splide', {
 			type   : 'fade',
 			rewind: true,
-			autoplay: true,
+			autoplay: false,
 			pauseOnHover: false,
 			interval: 3000
 		} ).mount();
@@ -102,9 +102,7 @@ import LVDA from "@/components/LVDA.astro"
 
 <style>
 	.hero{
-		height: 100vh;
 		overflow: hidden;
-		padding-top: 40px;
 		position: relative;
 	}
 
@@ -123,6 +121,7 @@ import LVDA from "@/components/LVDA.astro"
 	}
 
 	.slider{
+		height: 100vh;
 		mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 80%);
 		position: relative;
 	}
@@ -186,14 +185,14 @@ import LVDA from "@/components/LVDA.astro"
 		display: flex;
 		justify-content: space-between;
 		padding: 0 60px;
-		height: calc(100vh - 60px);
 		position: relative;
 	}
 
 	.boxer{
-		height: calc(100vh - 60px);
+		height: 100vh;
 		max-width: 720px;
   		mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 40px, rgba(0,0,0,1) 240px);
+		padding-top: 60px;
 		position: relative;
 	}
 
