@@ -5,7 +5,7 @@ import LVDA from "@/components/LVDA.astro"
 ---
 
 <section class="hero">
-	<div class="hero__lvda"><LVDA/></div>	
+	<div class="hero__lvda" data-scroll-repeat data-scroll data-scroll-speed="0.4"><LVDA/></div>	
 	<SmokeBackground />
 	<section class="slider splide">
 		<div class="splide__track">
@@ -14,9 +14,13 @@ import LVDA from "@/components/LVDA.astro"
 					<div class="slide__content main-row">
 						<div class="label">Primer Combate</div>
 						<div class="names">
-							<h2 class="name left">yo soy <span class="name__main">plex</span></h2>
+							<h2 class="name left">
+								<div>yo soy <span class="name__main">plex</span></div>
+							</h2>
 							<span class="versus">versus</span>
-							<h2 class="name right">el <span class="name__main">mariana</span></h2>
+							<h2 class="name right">
+								<div>el <span class="name__main">mariana</span></div>
+							</h2>
 						</div>
 						<div class="boxer left">
 							<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
@@ -30,9 +34,13 @@ import LVDA from "@/components/LVDA.astro"
 					<div class="slide__content main-row">
 						<div class="label">Segundo Combate</div>
 						<div class="names">
-							<h2 class="name left"><span class="name__main">alana</span></h2>
+							<h2 class="name left">
+								<div><span class="name__main">alana</span></div>
+							</h2>
 							<span class="versus">versus</span>
-							<h2 class="name right"><span class="name__main">nissaxter</span></h2>
+							<h2 class="name right">
+								<div><span class="name__main">nissaxter</span></div>
+							</h2>
 						</div>
 						<div class="boxer left">
 							<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
@@ -46,9 +54,13 @@ import LVDA from "@/components/LVDA.astro"
 					<div class="slide__content main-row">
 						<div class="label">Tercer Combate</div>
 						<div class="names">
-							<h2 class="name left"><span class="name__main">carreraaa</span></h2>
+							<h2 class="name left">
+								<div><span class="name__main">carreraaa</span></div>
+							</h2>
 							<span class="versus">versus</span>
-							<h2 class="name right"><span class="name__main">shelao</span></h2>
+							<h2 class="name right">
+								<div><span class="name__main">shelao</span></div>
+							</h2>
 						</div>
 						<div class="boxer left">
 							<img src="/images/yo-soy-plex.webp" alt="Yo Soy Plex">
@@ -71,18 +83,6 @@ import LVDA from "@/components/LVDA.astro"
 				</button>
 			</div>
 	  </div>
-		<!-- <div class="slider__navigation">
-			<div class="slider__navigation__content main-row">
-				<hr>
-				<button class="slider__navigation__button prev swiper-button-prev">
-					<Icon name="arrow-prev" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" />
-				</button>
-				<div class="label">Sexto Combate</div>
-				<button class="slider__navigation__button next swiper-button-next">
-					<Icon name="arrow-next" viewBox="0 0 32 50" width="32px" height="50px" fill="#fff" />
-				</button>
-			</div>
-		</div> -->
 	</section>
 </section>
 
@@ -104,18 +104,18 @@ import LVDA from "@/components/LVDA.astro"
 	.hero{
 		height: 100vh;
 		overflow: hidden;
-		padding-top: 60px;
+		padding-top: 20px;
 		position: relative;
 	}
 
 	.hero__lvda{
 		align-items: center;
 		display: flex;
-		left: 50%;
+		left: 0;
 		justify-content: center;
 		position: absolute;
-		top: 220px;
-		transform: translateX(-50%);
+		top: 200px;
+		width: 100%;
 	}
 
 	.hero__lvda svg{
@@ -194,7 +194,7 @@ import LVDA from "@/components/LVDA.astro"
 		height: calc(100vh - 60px);
 		max-width: 720px;
   		mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 40px, rgba(0,0,0,1) 240px);
-		transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
+		position: relative;
 	}
 
 	.boxer img{
@@ -206,30 +206,38 @@ import LVDA from "@/components/LVDA.astro"
 	}
 
 	.boxer.left{
-		transform: translateX(-200%);
+		left: -200%;
+		transition: left 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
 	}
 	
 	.boxer.right{
-		transform: translateX(200%);
+		right: -200%;
+		transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
 	}
 
 	.splide__slide.is-active .boxer{
 		opacity: 1;
-		transform: translateX(0);
+	}
+
+	.splide__slide.is-active .boxer.left{
+		left: 0;
+	}
+	
+	.splide__slide.is-active .boxer.right{
+		right: 0;
 	}
 
 	.names{
 		align-items: center;
-		bottom: 360px;
+		bottom: 260px;
 		font-family: 'Atomic';
 		font-size: 3.2em;
 		display: flex;
 		justify-content: center;
-		left: 50%;
+		left: 0;
 		line-height: 1em;
 		position: absolute;
 		rotate: -8deg;
-		transform: translateX(-50%);
 		width: 100%;
 		z-index: 2;
 	}
@@ -237,14 +245,16 @@ import LVDA from "@/components/LVDA.astro"
 	.name{
 		color: var(--color-accent);
 		opacity: 0;
-		transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.2s, opacity 0.6s ease-in-out 0.5s;
+		position: relative;
 	}
 
 	.versus{
 		display: block;
-		padding: 0 10px;
+		padding: 0 20px;
 		opacity: 0;
+		position: relative;
 		transition: opacity 0.6s ease-in-out 0.5s;
+		z-index: 2;
 	}
 
 	.name__main{
@@ -252,17 +262,28 @@ import LVDA from "@/components/LVDA.astro"
 	}
 
 	.name.left{
-		transform: translateX(-300%);
+		left: -300%;
+		transition: left 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
 	}
 
 	.name.right{
 		margin: 0 0 -180px -200px;
-		transform: translateX(300%);
+		right: -300%;
+		transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
 	}
 
-	.splide__slide.is-active .name,
 	.splide__slide.is-active .versus{
 		opacity: 1;
-		transform: translateX(0);
 	}
+
+	.splide__slide.is-active .name.left{
+		left: 0;
+		opacity: 1;
+	}
+
+	.splide__slide.is-active .name.right{	
+		right: 0;
+		opacity: 1;
+	}
+
 </style>

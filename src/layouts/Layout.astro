@@ -23,10 +23,10 @@ const { title, description, preloadImgLCP } = Astro.props
 		<ViewTransitions />
 	</head>
 
-	<body>
+	<body data-scroll-container>
 		<NoiseBackground/>
 		<!-- <LightsBackground/> -->
-		<main>
+		<main data-scroll-section>
 			<Header/>
 			<slot/>
 			<!-- <Footer/> -->
@@ -36,3 +36,13 @@ const { title, description, preloadImgLCP } = Astro.props
 </html>
 
 <Global/>
+
+<script>
+	import LocomotiveScroll from 'locomotive-scroll';
+	document.addEventListener( "astro:page-load", () => {
+		const scroller = new LocomotiveScroll({
+			el: document.querySelector("[data-scroll-container]"),
+			smooth: true
+		}
+	)})
+</script>
