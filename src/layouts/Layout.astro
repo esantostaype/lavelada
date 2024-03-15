@@ -39,10 +39,13 @@ const { title, description, preloadImgLCP } = Astro.props
 
 <script>
 	import LocomotiveScroll from 'locomotive-scroll';
-	document.addEventListener( "astro:page-load", () => {
-		const scroller = new LocomotiveScroll({
-			el: document.querySelector("[data-scroll-container]"),
-			smooth: true
+	document.addEventListener("astro:page-load", () => {
+		const container = document.querySelector("[data-scroll-container]");
+		if (container instanceof HTMLElement) {
+			const scroller = new LocomotiveScroll({
+				el: container,
+				smooth: true
+			});
 		}
-	)})
+	});
 </script>
